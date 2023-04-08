@@ -1,9 +1,14 @@
-import express, {Request, Response} from 'express';
+import express, {Express, Request, Response} from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import axios from 'axios';
 
-const app = express();
+type Event = {
+    type: string,
+    data: []
+}
+
+const app: Express = express();
 app.use(cors());
 app.use(bodyParser.json());
 
@@ -14,8 +19,12 @@ const listeners: string[] = [
     'http://localhost:4003'
 ];
 
+const events: Event[] = [];
+
 app.post('/events', async (req: Request, res: Response): Promise<void> => {
-    const event = req.body;
+    const event: Event = req.body;
+
+    events.push(event);
 
     console.log('Received event: ' + event.type);
 
@@ -27,6 +36,10 @@ app.post('/events', async (req: Request, res: Response): Promise<void> => {
     }
 
     res.send({ status: 'OK'});
+});
+
+app.get('/events', (req: Request, res: Response): void => {
+    res.send(events);
 });
 
 app.listen(4005, (): void => {
