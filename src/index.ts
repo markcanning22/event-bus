@@ -10,7 +10,8 @@ app.use(bodyParser.json());
 const listeners: string[] = [
     'http://localhost:4000',
     'http://localhost:4001',
-    'http://localhost:4002'
+    'http://localhost:4002',
+    'http://localhost:4003'
 ];
 
 app.post('/events', async (req: Request, res: Response): Promise<void> => {
