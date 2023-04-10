@@ -13,10 +13,10 @@ app.use(cors());
 app.use(bodyParser.json());
 
 const listeners: string[] = [
-    'http://posts-clusterip-srv:4000',
-    'http://comments-clusterip-srv:4001',
-    'http://query-clusterip-srv:4002',
-    'http://moderation-clusterip-srv:4003'
+    'http://posts-srv:4000',
+    'http://comments-srv:4001',
+    'http://query-srv:4002',
+    'http://moderation-srv:4003'
 ];
 
 const events: Event[] = [];
